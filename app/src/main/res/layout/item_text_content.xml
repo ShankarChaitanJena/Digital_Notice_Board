@@ -10,9 +10,9 @@
         android:id="@+id/textViewContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:textStyle="normal"
-        android:fontFamily="sans-serif"
-        android:textColor="#171717" />
+        android:fontFamily="@font/robo"
+        android:textColor="#0C0987" />
 
 </LinearLayout>

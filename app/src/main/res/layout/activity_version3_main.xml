@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D8070707">
-<!--    tools:context=".version_2.Version_2_MainActivity">-->
+    android:background="@color/white"
+    android:layout_margin="5dp"
+    tools:context=".MainActivity">
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/white"
+        android:background="@drawable/white_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,25 +31,25 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:background="@color/white"
-            android:paddingLeft="175dp">
+            android:paddingLeft="90dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/engr"
                 android:gravity="center"
                 android:text="Creative Techno College"
                 android:textColor="#353535"
-                android:fontFamily="sans-serif-black"
-                android:layout_marginLeft="20dp"
-                android:textSize="30dp"
+                android:textSize="29sp"
                 android:textStyle="bold" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:src="@drawable/technocrat"
-                android:paddingLeft="180dp"
+                android:paddingBottom="1dp"
+                android:paddingLeft="90dp"
                 />
 
 
@@ -57,9 +59,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:background="#fff">
-
-
-
+            
 
         </LinearLayout>
 
@@ -69,7 +69,7 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#3F51B5"
+        android:background="#85219C"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:ignore="MissingConstraints">
@@ -77,13 +77,14 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="42sp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="DIGITAL NOTICE BOARD"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/engr"
             android:textColor="@color/white"
-            android:textSize="20dp"
+            android:background="@drawable/main_color_boder"
+            android:textSize="22dp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -108,7 +109,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="46dp"
-                android:background="#C50909"
+                android:background="#352E2E"
+                android:paddingTop="7dp"
                 android:paddingLeft="10dp"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -141,10 +143,11 @@
                 android:orientation="horizontal">
 
                 <TextView
+
                     android:id="@+id/marquee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#CC3F51B5"
+                    android:background="@drawable/main_color_boder"
                     android:text="@string/creative_line"
                     android:textColor="#FFFFFF"
                     android:textSize="20dp"
@@ -156,6 +159,7 @@
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
                     tools:ignore="MissingConstraints,TextSizeCheck" />
+
             </LinearLayout>
 
         </LinearLayout>
@@ -167,6 +171,8 @@
         android:layout_width="match_parent"
         android:layout_height="399dp"
         android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@drawable/white_border"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="@+id/linearLayout2"
@@ -175,37 +181,62 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/imageRecyclerView"
             android:layout_width="666dp"
+            android:background="@drawable/image_boder"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingLeft="12dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50sp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:text="Upcoming"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:textColor="@color/black"
-                android:textSize="28dp"
+                android:text="@string/coming"
+                android:fontFamily="@font/engr"
+                android:textColor="@color/white"
+                android:textSize="22dp"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:background="#F4F5CC"/>
+                android:gravity="center"
+                android:textStyle="bold"
+                android:background="@drawable/main_color_boder"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                android:background="#DEFFFF"/>
+                android:layout_height="190dp"
+                android:background="@drawable/white_border"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="136dp"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView
+                    android:id="@+id/motivat_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:text='"Motivational\nQuote"'
+                    android:textSize="15dp"
+                    android:paddingLeft="20sp"
+                    android:padding="20sp"
+                    android:paddingTop="8sp"
+                    android:paddingBottom="8sp"
+                    android:fontFamily="@font/engr"
+                    android:background="@drawable/white_border"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

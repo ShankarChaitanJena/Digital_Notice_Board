@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="border">#FF000000</color>
+    <color name="theam_color">#85219C</color>
+
 </resources>

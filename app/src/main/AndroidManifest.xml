@@ -15,9 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DNB"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".version_1.Version_1_MainActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".version_3.Version3_MainActivity"
+            android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".version_1.Version_1_MainActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".version_2.Version_2_MainActivity"
             android:exported="false" />
