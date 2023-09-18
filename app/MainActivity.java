@@ -1,26 +1,29 @@
 package com.example.dnb;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,16 +40,14 @@ public class MainActivity extends AppCompatActivity {
     private ImageAdapter_ver2 imageAdapter;
     private List<Bitmap> imageList = new ArrayList<>();
 
-    private TextView textView, textView2;
+    private TextView textView;
+    private Timer imageTimer;
+    private Timer textContentTimer;
 
     private RecyclerView recyclerView2;
     private TextContentAdapter adapter;
     private ArrayList<String> textContentList;
 
-    private Timer imageTimer;
-    private Timer textContentTimer;
-
-    private Handler handler; // Handler to run UI-related tasks
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
         fetchImages();
         fetchUpComing();
-
-        textView2 = findViewById(R.id.motivat_text);
-        handler = new Handler(Looper.getMainLooper()); // Initialize the handler for UI updates
-        fetchMotivatText();
 
         TextView dateTextView = findViewById(R.id.date_textview);
         TextView timeTextView = findViewById(R.id.time_textview);
@@ -109,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         };
         thread.start();
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -125,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
     private void startAutoScrolling() {
         final int imageDelay = 3000; // Delay between scrolls (in milliseconds)
         final int imagePeriod = 5000; // Time between the start of each scroll (in milliseconds)
-        final int textContentDelay = 25000; // Delay between scrolls (in milliseconds)
-        final int textContentPeriod = 25000; // Time between the start of each scroll (in milliseconds)
+        final int textContentDelay = 3000; // Delay between scrolls (in milliseconds)
+        final int textContentPeriod = 2000; // Time between the start of each scroll (in milliseconds)
 
         imageTimer = new Timer();
         imageTimer.scheduleAtFixedRate(new TimerTask() {
@@ -158,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         }, textContentDelay, textContentPeriod);
     }
 
+
     private void stopAutoScrolling() {
         // Stop the auto-scrolling timers
         if (imageTimer != null) {
@@ -166,37 +163,6 @@ public class MainActivity extends AppCompatActivity {
         if (textContentTimer != null) {
             textContentTimer.cancel();
         }
-    }
-
-    private void fetchMotivatText() {
-        String url = "https://creativecollege.in/DNB/Motivation_Retrive.php";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Run UI-related code on the main thread
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (response.isEmpty()) {
-                                    textView2.setText("hello");
-                                } else {
-                                    textView2.setText('"'+response+'"');
-                                }
-                            }
-                        });
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Handle Volley error here
-                Toast.makeText(getApplicationContext(), "Error fetching Text", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
     }
 
     private void fetchUpComing() {
@@ -215,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                             // Notify the adapter that data has changed
                             adapter.notifyDataSetChanged();
-                            Log.d("MainActivity", "Retrieved text content: " + textContentList.toString());
+                            Log.d(TAG, "Retrieved text content: " + textContentList.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -232,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
         // Add the request to the Volley request queue
         Volley.newRequestQueue(this).add(jsonArrayRequest);
     }
+
 
     private void fetchImages() {
         String url = "https://creativecollege.in/DNB/retrive.php";
